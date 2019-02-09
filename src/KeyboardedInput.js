@@ -42,6 +42,7 @@ class KeyboardedInput extends React.Component {
     this.handleFocus = this.handleFocus.bind(this);
     this.handleFocusLost = this.handleFocusLost.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.hideKeyboard = this.hideKeyboard.bind(this);
     this.handleOnBlur = this.handleOnBlur.bind(this);
     this.handleOnFocus = this.handleOnFocus.bind(this);
@@ -65,7 +66,11 @@ class KeyboardedInput extends React.Component {
   }
 
   handleChange(event) {
-    this.props.onChange(event);
+    this.props.onChange(event.target.value);
+  }
+
+  handleKeyPress(event) {
+    if (event.key === "Enter") this.props.handleEnter();
   }
 
   handleOnBlur(value) {
@@ -137,6 +142,7 @@ class KeyboardedInput extends React.Component {
         step={this.props.step}
         pattern={this.props.pattern}
         onChange={this.handleChange}
+        onKeyPress={this.handleKeyPress}
         readOnly={this.props.readOnly === true}
         ref={(e) => { this.input = e; }}
       />,
