@@ -70,7 +70,9 @@ class KeyboardedInput extends React.Component {
   }
 
   handleKeyPress(event) {
-    if (event.key === "Enter") this.props.handleEnter();
+    if (event.key === "Enter" && this.props.handleEnter) {
+      this.props.handleEnter() ;
+    }
   }
 
   handleOnBlur(value) {
